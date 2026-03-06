@@ -5,12 +5,15 @@ const {poolPromise}=require("./config/db");
 const authRoute=require("./modules/auth/auth.route");
 const bookingRouter=require("./modules/booking/booking.route")
 const errMiddleWare=require("./middlewares/error.middleware")
+const cron=require("./utils/createReleaseSeat")
 app.use(express.json());
 app.get("/",(req,res)=> {
     res.json({
         message: "Flight Booking API running"
     })
 })
+cron();
+//  This function will automatically reset in one minute
 app.use("/api/auth",authRoute);
 app.use("/api/booking",bookingRouter);
 const PORT=process.env.PORT || 3000;
