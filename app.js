@@ -2,7 +2,8 @@ require("dotenv").config()
 const express=require("express");
 const app=express();
 const {poolPromise}=require("./config/db");
-const authRoute=require("./modules/auth/auth.route")
+const authRoute=require("./modules/auth/auth.route");
+const bookingRouter=require("./modules/booking/booking.route")
 const errMiddleWare=require("./middlewares/error.middleware")
 app.use(express.json());
 app.get("/",(req,res)=> {
@@ -11,6 +12,7 @@ app.get("/",(req,res)=> {
     })
 })
 app.use("/api/auth",authRoute);
+app.use("/api/booking",bookingRouter);
 const PORT=process.env.PORT || 3000;
 app.use(errMiddleWare)
 app.listen(PORT,()=> {
