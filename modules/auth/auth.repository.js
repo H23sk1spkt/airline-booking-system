@@ -19,3 +19,6 @@ exports.createUser=async ({fullName,email,password}) => {
             `)
     return result.recordset[0];
 };
+exports.sendOtp= async (email) => {
+    
+}
